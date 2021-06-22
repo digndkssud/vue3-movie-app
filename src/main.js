@@ -1,7 +1,10 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import router from './routes/index.js'
+import router from './routes'
+import store from './store'
+
 
 createApp(App)
   .use(router) // 플러그인 사용
+  .use(store)
   .mount('#app')
