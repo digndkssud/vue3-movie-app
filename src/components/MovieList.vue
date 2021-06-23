@@ -18,6 +18,7 @@ export default {
   },
   computed:{
     movies(){
+      // movie라는 모듈의 movies를 사용
       return this.$store.state.movie.movies
     }
   }

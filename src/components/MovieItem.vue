@@ -3,7 +3,7 @@
 </template>
 
 <script>
-export default {
+export default { 
   props: {
     movie: {
       type: Object,
@@ -12,3 +12,4 @@ export default {
   }
 }
 </script>
+
