@@ -36,9 +36,11 @@ export default {
     // Search.vue의 this.$store.dispatch()를 작동.
     // title, type, number, year을 payload를 통해 받아온다.
     async searchMovies({ state, commit }, payload) {
-      const { title, type, number ,year } = payload
-      const OMDB_API_KEY = 'e01aeb69'
-      const res = await axios.get(`https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&s=${title}&type=${type}&y=${year}&page=1`)
+     try {
+      const res = await _fetchMovie({
+        ...payload,
+        page: 1
+      })
       const { Search, totalResults } = res.data
       commit('updateState', {
         // 찾은 데이터(Search)를 momvies라는 데이터로 반환
@@ -53,9 +55,12 @@ export default {
       // 추가 요청 전송!
       if(pageLength > 1) {
         for (let page = 2; page <= pageLength; page += 1) {
-          if(page > (number / 10 )) break 
+          if(page > (payload.number / 10 )) break 
           // 4 > 3 영화 목록 갯수 조절
-          const res = await axios.get(`https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&s=${title}&type=${type}&y=${year}&page=${page}`)
+          const res = await _fetchMovie({
+            ...payload,
+            page
+          })
           const { Search } = res.data 
           commit('updateState', {
             // movies라는 배열에 기존 검색했던 movies 데이터와
@@ -67,6 +72,33 @@ export default {
           })
         }
       } 
+     } catch (message) {
+       commit('updateState', {
+         movies: [],
+         message
+       })
+     }  
     }
   }
+}
+
+function _fetchMovie(payload) {
+  const { title, type, year, page } = payload
+  const OMDB_API_KEY = 'e01aeb69'
+  const url = `https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&s=${title}&type=${type}&y=${year}&page=${page}`
+
+  return new Promise((resolve, reject) => {
+    // axios.get을 실행이 되면 res를 반환
+    axios.get(url)
+      .then(res => {
+        console.log(res)
+        if(res.data.Error){
+          reject(res.data.Error)
+        }
+        resolve(res)
+      })
+      .catch(err => {
+        reject(err.message)
+      })
+  })
 }
