@@ -8,10 +8,12 @@ export default {
   // data!
 
   state: () => ({
-    movies: [] 
+    movies: [],
+    message: 'Search for the movie title!',
+    loading: false,
+    theMovie: {}
   }),
   // computed!
-
   getters: {
     // movieIds(state) {
     //   return state.movies.map(m => m.imdbID)
@@ -36,6 +38,11 @@ export default {
     // Search.vue의 this.$store.dispatch()를 작동.
     // title, type, number, year을 payload를 통해 받아온다.
     async searchMovies({ state, commit }, payload) {
+      if(state.loading) return
+      commit('updateState',{
+        message:'',
+        loading: true
+      })
      try {
       const res = await _fetchMovie({
         ...payload,
@@ -44,7 +51,7 @@ export default {
       const { Search, totalResults } = res.data
       commit('updateState', {
         // 찾은 데이터(Search)를 momvies라는 데이터로 반환
-        movies: _uniqBy(Search, 'imdbID')
+        movies: _uniqBy(Search, 'imdbID') 
       })
       console.log(totalResults) // 268
       console.log(typeof totalResults) // string
@@ -77,15 +84,44 @@ export default {
          movies: [],
          message
        })
-     }  
+     } finally {
+       commit('updateState',{
+         loading: false
+       })
+     }
+    },
+    async searchMovieWithId({ state, commit }, payload){
+      if(state.loading) return
+
+      commit('updateState',{
+        theMovie : {},
+        loading  : true
+      })
+
+      try {
+        const res = await _fetchMovie(payload)
+        commit('updateState',{
+          theMovie : res.data
+        })
+      } catch (error) {
+        commit('updateState',{
+          theMovie: {}
+        })
+      } finally {
+        commit('updateState',{
+          loading: false
+        })
+      }
     }
   }
 }
 
 function _fetchMovie(payload) {
-  const { title, type, year, page } = payload
+  const { title, type, year, page, id } = payload
   const OMDB_API_KEY = 'e01aeb69'
-  const url = `https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&s=${title}&type=${type}&y=${year}&page=${page}`
+  const url = id 
+    ? `https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&i=${id}`
+    :`https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&s=${title}&type=${type}&y=${year}&page=${page}`
 
   return new Promise((resolve, reject) => {
     // axios.get을 실행이 되면 res를 반환

@@ -45,7 +45,6 @@ export default {
       left: 0;
       right: 0;
       border: 6px solid $primary;
-      
   } 
   .info {
     background-color: rgba($black, .3);
