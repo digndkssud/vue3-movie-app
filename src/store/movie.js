@@ -39,7 +39,7 @@ export default {
     // title, type, number, year을 payload를 통해 받아온다.
     async searchMovies({ state, commit }, payload) {
       if(state.loading) return
-      commit('updateState',{
+      commit('updateState',{ 
         message:'',
         loading: true
       })
