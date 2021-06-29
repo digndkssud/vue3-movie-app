@@ -2,6 +2,10 @@
   <div 
     :style="{ backgroundImage: `url(${movie.Poster})`}"
     class="movie">
+    <Loader 
+      v-if="imageLoading"
+      :size="1.5"
+      absolute />
     <div class="info">
       <div class="year">
         {{ movie.Year }}
@@ -14,11 +18,37 @@
 </template>
 
 <script>
+import Loader from '~/components/Loader'
+
 export default { 
+  components: {
+    Loader
+  },
   props: {
     movie: {
       type: Object,
       defalut: () => ({})
+    }
+  },
+  data(){
+    return {
+      // 로딩을 보여준 상태에서 이미지를 찾는다. 
+      imageLoading: true
+    }
+  },
+  // html 구조 연결 된 직후에 init을 구동
+  mounted() {
+    this.init()
+  },
+  methods: {
+    async init() {
+      const poster = this.movie.Poster
+      if(!poster || poster === 'N/A'){
+        this.imageLoading = false  
+      } else{
+        await this.$loadImage(poster)
+        this.imageLoading = false
+      }
     }
   }
 }

@@ -21,8 +21,12 @@
       v-else
       class="movie-details">
       <div
-        :style="{ backgroundImage: `url(${theMovie.Poster})`}"
-        class="poster"></div>
+        :style="{ backgroundImage: `url(${requestDiffSizeImage(theMovie.Poster)})`}"
+        class="poster">
+        <Loader 
+          v-if="imageLoading"
+          absolute />
+      </div>
       <div class="specs">
         <div class="title">
           {{ theMovie.Title }}
@@ -45,7 +49,7 @@
               class="rating">
               <img
                 :src="`https://raw.githubusercontent.com/ParkYoungWoong/vue3-movie-app/master/src/assets/${name}.png`"
-                :alt="name" />
+                :alt="name" /> 
               <span>{{ score }} </span>
             </div>
           </div>
@@ -74,6 +78,11 @@ export default {
   components: {
     Loader
   },
+  data(){
+    return {
+      imageLoading: true
+    }
+  },
   computed: {
     theMovie() {
       return this.$store.state.movie.theMovie
@@ -88,6 +97,25 @@ export default {
       // movie/tt123762 => 
       id: this.$route.params.id
     })
+  },
+  methods: {
+    requestDiffSizeImage(url, size = 800) {
+      if(!url || url === 'N/A') {
+        this.imageLoading = false 
+        return ''
+      } else {
+        const src = url.replace('SX300',`SX${size}`)
+        // 사이즈를 변경한 src
+        // 로딩이 끝나고서 주소값을 반환할 가능성이 있다.
+        // => 사진이 안 뜰 수도 있다.
+        this.$loadImage(src)
+          .then(() => {
+            this.imageLoading = false 
+          })
+        // 반환을 해야 출력 가능
+        return src
+      }
+    }
   }
 }
 </script>
@@ -146,6 +174,7 @@ export default {
     overflow: hidden;
     background-size: cover;
     background-position: center;
+    position: relative;
   }
   .specs {
     flex-grow: 1;
