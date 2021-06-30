@@ -53,8 +53,8 @@ export default {
         // 찾은 데이터(Search)를 momvies라는 데이터로 반환
         movies: _uniqBy(Search, 'imdbID') 
       })
-      console.log(totalResults) // 268
-      console.log(typeof totalResults) // string
+      // console.log(totalResults) // 268
+      // console.log(typeof totalResults) // string
 
       const total = parseInt(totalResults, 10) // string인 totalResults를 10진수인 int로 바꾸어 total에 저장
       const pageLength = Math.ceil(total / 10)

@@ -102,10 +102,10 @@ export default {
     requestDiffSizeImage(url, size = 800) {
       if(!url || url === 'N/A') {
         this.imageLoading = false 
-        return ''
+        return '' 
       } else {
         const src = url.replace('SX300',`SX${size}`)
-        // 사이즈를 변경한 src
+        // 사이즈를 변경한 src 
         // 로딩이 끝나고서 주소값을 반환할 가능성이 있다.
         // => 사진이 안 뜰 수도 있다.
         this.$loadImage(src)
