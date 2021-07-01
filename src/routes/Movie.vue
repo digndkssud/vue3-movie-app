@@ -120,8 +120,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "~/scss/main";
-
 .container {
   padding-top: 40px;
 }
@@ -239,7 +237,7 @@ export default {
       .title {
         font-size: 50px;
       }
-      .ratings {
+      .ratings { 
         .rating-wrap {
           display: block;
           .rating {

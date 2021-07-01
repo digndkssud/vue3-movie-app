@@ -14,7 +14,7 @@ module.exports = {
       'assets': path.resolve(__dirname, 'src/assets')
     }
   },
-
+  
   // 파일을 읽어들이기 시작하는 진입점 설정
   entry: './src/main.js',
 
@@ -41,7 +41,12 @@ module.exports = {
           'style-loader',
           'css-loader',
           'postcss-loader',
-          'sass-loader'
+          {
+            loader: 'sass-loader',
+            options: {
+              additionalData: '@import "~/scss/main";'
+            }
+          }
         ]
       },
       {

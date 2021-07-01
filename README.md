@@ -1,5 +1,22 @@
 # 2021-07-01
 
+# webpack.config.js 설정
+```vue
+use: [
+          // 순서 중요!
+          'vue-style-loader',
+          'style-loader',
+          'css-loader',
+          'postcss-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              additionalData: '@import "~/scss/main";'
+            }
+          }
+        ]
+```
+
 # 부트스트랩 Breakpoint(반응형)
 
 ![image](https://user-images.githubusercontent.com/61581807/124080325-33d47800-da85-11eb-8634-158c33e368c9.png)
@@ -11,7 +28,7 @@
       display: none;
     }
   }
-  
+
 ```
 
 # 404 PAGE NOT FOUND
