@@ -1,4 +1,19 @@
 # 2021-07-01
+
+# 부트스트랩 Breakpoint(반응형)
+
+![image](https://user-images.githubusercontent.com/61581807/124080325-33d47800-da85-11eb-8634-158c33e368c9.png)
+
+```vue
+
+ @include media-breakpoint-down(sm){
+    .nav {
+      display: none;
+    }
+  }
+  
+```
+
 # 404 PAGE NOT FOUND
 
 ![image](https://user-images.githubusercontent.com/61581807/124073970-c1ac6500-da7d-11eb-9309-7811c1a7566e.png)
