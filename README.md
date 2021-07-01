@@ -1,3 +1,9 @@
+# 2021-07-01
+# 404 PAGE NOT FOUND
+
+![image](https://user-images.githubusercontent.com/61581807/124073970-c1ac6500-da7d-11eb-9309-7811c1a7566e.png)
+
+
 # 2021-06-30
 # Nav 경로 일치 및 활성화
 

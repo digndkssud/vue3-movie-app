@@ -35,7 +35,7 @@
           <span>{{ theMovie.Released }}</span>
           <span>{{ theMovie.Runtime }}</span>
           <span>{{ theMovie.Country }}</span>
-        </div>
+        </div> 
         <div class="plot"> 
           {{ theMovie.Plot }}
         </div>
@@ -92,7 +92,6 @@ export default {
     }
   },
   created(){
-    console.log(this.$route)
     this.$store.dispatch('movie/searchMovieWithId',{
       // movie/tt123762 => 
       id: this.$route.params.id
