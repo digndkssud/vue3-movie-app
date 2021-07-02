@@ -91,6 +91,8 @@ export default {
       return this.$store.state.movie.loading
     }
   },
+  // Nav의 Movie가 클릭되면 해당 id로 searchMovieWithId를 통해 theMovie에 정보 담아둠
+  // computed의 theMovie 사용 할 수 있게한다.
   created(){
     this.$store.dispatch('movie/searchMovieWithId',{
       // movie/tt123762 => 
@@ -104,7 +106,9 @@ export default {
         return '' 
       } else {
         const src = url.replace('SX300',`SX${size}`)
-        // 사이즈를 변경한 src 
+        // 사이즈를 변경한 src이 반환이 되어야
+        // 24줄의 background 이미지를 반환
+        // ansyc await를 사용하면 
         // 로딩이 끝나고서 주소값을 반환할 가능성이 있다.
         // => 사진이 안 뜰 수도 있다.
         this.$loadImage(src)

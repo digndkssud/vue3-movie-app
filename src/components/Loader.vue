@@ -13,6 +13,7 @@
 
 <script>
 export default {
+  // props => Loader를 사용하는 component으로 부터 받을 수 있는 데이터의 형태
   props:{
     size:{
       type: Number,

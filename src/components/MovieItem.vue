@@ -37,7 +37,8 @@ export default {
       imageLoading: true
     }
   },
-  // html 구조 연결 된 직후에 init을 구동
+  // html 구조 연결 된 직후
+  // 즉 검색을 하고 난 후에 init이 검색이 된다.
   mounted() {
     this.init()
   },
