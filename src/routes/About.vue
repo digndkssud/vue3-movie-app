@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import Loader from '~/components/Loader'
 
 export default {
@@ -29,18 +30,14 @@ export default {
     }
   },
   computed: {
-    image() {
-      return this.$store.state.about.image 
-    },
-    name() {
-      return this.$store.state.about.name
-    },
-    email() {
-      return this.$store.state.about.email
-    },
-    phone() {
-      return this.$store.state.about.phone
-    }
+    // 인수로는 모듈명을 적어준다.
+    // 다음으로는 state명들을 배열로 적어준다.
+    ...mapState('about',[
+      'image',
+      'name',
+      'email',
+      'phone'
+    ])
   },
   mounted(){
     this.init()

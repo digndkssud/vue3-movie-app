@@ -72,6 +72,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import Loader from '~/components/Loader'
 
 export default {
@@ -84,12 +85,10 @@ export default {
     }
   },
   computed: {
-    theMovie() {
-      return this.$store.state.movie.theMovie
-    },
-    loading() {
-      return this.$store.state.movie.loading
-    }
+    ...mapState('movie',[
+      'theMovie',
+      'loading'
+    ])
   },
   // Nav의 Movie가 클릭되면 해당 id로 searchMovieWithId를 통해 theMovie에 정보 담아둠
   // computed의 theMovie 사용 할 수 있게한다.

@@ -4,10 +4,13 @@ import Movie from './Movie'
 import About from './About'
 import NotFound from './NotFound'
 
-export default createRouter({
+export default createRouter({  
   // Hash
   // https://google.com/#/search
   history: createWebHashHistory(),
+  scrollBehavior(){
+    return { top: 0 }
+  },  
   // pages
   // https://google.com/about
   routes: [

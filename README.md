@@ -1,20 +1,70 @@
+# 2021-07-05
+
+# Vue Router
+```plaintext
+<RouterView>
+=> 페이지가 출력(렌더링) 되는 영역 컴포넌트
+
+<RouterLink>
+=> 페이지 이동을 위한 링크 컴포넌트
+```
+
+```plaintext
+$route (속성)
+=> params, fullpath
+
+$router (메소드)
+=> Route(페이지) 조작을 위한 객체 push 
+```
+# Vuex Helpers(store에서 state 값 가져오기)
+
+```vue
+computed: {
+    image() {
+      return this.$store.state.about.image 
+    },
+    name() {
+      return this.$store.state.about.name
+    },
+    email() {
+      return this.$store.state.about.email
+    },
+    phone() {
+      return this.$store.state.about.phone
+    }
+  }
+```
+## Vuex Helpers를 사용하여 다음과 같이 깜끌하게 만들 수 있다.
+
+```vue
+computed: {
+  // 인수로는 모듈명을 적어준다.
+ ...mapState('about',[
+      'image',
+      'name',
+      'email',
+      'phone'
+    ])
+}
+```
+
 # 2021-07-01
 
 # webpack.config.js 설정
 ```vue
 use: [
-          // 순서 중요!
-          'vue-style-loader',
-          'style-loader',
-          'css-loader',
-          'postcss-loader',
-          {
-            loader: 'sass-loader',
-            options: {
-              additionalData: '@import "~/scss/main";'
-            }
-          }
-        ]
+      // 순서 중요!
+      'vue-style-loader',
+      'style-loader',
+      'css-loader',
+      'postcss-loader',
+      {
+        loader: 'sass-loader',
+        options: {
+          additionalData: '@import "~/scss/main";'
+        }
+      }
+    ]
 ```
 
 # 부트스트랩 Breakpoint(반응형)

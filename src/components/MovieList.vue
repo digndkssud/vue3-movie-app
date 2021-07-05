@@ -23,6 +23,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import MovieItem from '~/components/MovieItem'
 import Loader from '~/components/Loader'
 
@@ -32,16 +33,11 @@ export default {
     Loader
   },
   computed:{
-    movies(){
-      // store에서 해당 내용을 가져옴
-      return this.$store.state.movie.movies
-    },
-    message(){
-      return this.$store.state.movie.message
-    },
-    loading(){
-      return this.$store.state.movie.loading
-    }
+    ...mapState('movie',[
+      'movies',
+      'message',
+      'loading'
+    ])
   }
 }
 </script>

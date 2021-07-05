@@ -1,6 +1,8 @@
 import axios from 'axios'
 import _uniqBy from 'lodash/uniqBy'
 
+const _defaultMessage = 'Search for the movie title!'
+
 export default {
   // module!
 
@@ -9,7 +11,7 @@ export default {
 
   state: () => ({
     movies: [],
-    message: 'Search for the movie title!',
+    message: _defaultMessage,
     loading: false,
     theMovie: {}
   }),
@@ -22,6 +24,7 @@ export default {
   // methods!
 
   // 변이 mutations에서만 데이터 변경 
+  // this.$store.commit으로 다른 컴포넌트에서 실행
   mutations: { 
     updateState(state, payload) {
       // ['movies','message','loading']
@@ -29,8 +32,11 @@ export default {
         state[key] = payload[key]
       })
     },
+    // 메인 페이지로 갔었을 때 초기화가 되어야하므로 Home 컴포넌트에서 사용
     resetMovies(state) {
       state.movies = []
+      state.message = _defaultMessage
+      state.loading = false
     }
   },
   // 비동기

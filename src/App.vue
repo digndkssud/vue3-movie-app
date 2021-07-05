@@ -1,5 +1,6 @@
 <template>
   <Header />
+  <!-- 달라지는 부분 -->
   <RouterView />
   <Footer />
 </template>
