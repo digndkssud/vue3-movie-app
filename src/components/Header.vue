@@ -1,6 +1,7 @@
 <template>
   <header>
-    <Logo />
+    <Logo 
+      class="logo" />
     <div class="nav nav-pills">
       <div
         v-for="nav in navigations" 
@@ -80,7 +81,7 @@ header {
   display: flex; 
   align-items: center;
   position: relative;
-  .Logo {
+  .logo {
     margin-right: 40px;
   }
   .user {
