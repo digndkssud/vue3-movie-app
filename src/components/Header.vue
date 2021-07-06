@@ -80,7 +80,7 @@ header {
   display: flex; 
   align-items: center;
   position: relative;
-  .logo {
+  .Logo {
     margin-right: 40px;
   }
   .user {
