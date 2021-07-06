@@ -15,6 +15,7 @@
    font-size: 20px;
    color: $black;
    text-decoration: none;
+   margin-right: 40px;
    &:hover {
      color: $black; 
    }
