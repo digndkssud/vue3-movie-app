@@ -1,7 +1,6 @@
 <template>
   <header>
-    <Logo 
-      class="logo" />
+    <Logo />
     <div class="nav nav-pills">
       <div
         v-for="nav in navigations" 
@@ -73,13 +72,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
-
 header {
   height: 70px;
-  padding: 0 40px;
   display: flex; 
   align-items: center;
+  padding: 0 40px;
   position: relative;
   .logo {
     margin-right: 40px;
