@@ -3,13 +3,11 @@
   <RouterLink
     to="/"
     class="logo">
-    <span>SAKURaAPI</span> .COM
+    <span>SAKURaAPI</span>.COM
   </RouterLink>
 </template>
 
 <style lang="scss" scoped>
-
-
 .logo {
    font-family: "Oswald", sans-serif;
    font-size: 20px;
