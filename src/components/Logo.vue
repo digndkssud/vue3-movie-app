@@ -3,7 +3,7 @@
   <RouterLink
     to="/"
     class="logo">
-    <span>SAKURaAPI</span>.COM
+    <span>SAKURa</span>.COM
   </RouterLink>
 </template>
 
